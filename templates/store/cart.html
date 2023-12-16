@@ -9,13 +9,13 @@
           <div class="container">
             <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
               <div class="col-lg-6">
-                <h1 class="h2 text-uppercase mb-0">Cart</h1>
+                <h1 class="h2 text-uppercase mb-0">Events</h1>
               </div>
               <div class="col-lg-6 text-lg-right">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                    <li class="breadcrumb-item active" aria-current="page">Events</li>
                   </ol>
                 </nav>
               </div>
@@ -38,7 +38,7 @@
                     <tr>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Product</strong></th>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Price</strong></th>
-                      <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Quantity</strong></th>
+                      <th class="border-0" scope="col"> <strong class="text-small text-uppercase"></strong></th>
                       <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Total</strong></th>
                       <th class="border-0" scope="col"> </th>
                     </tr>
@@ -60,19 +60,9 @@
                         </div>
                       </th>
                       <td class="align-middle border-0">
-                        <p class="mb-0 small">₦{{cart_product.product.price}}</p>
+                        <p class="mb-0 small"></p>
                       </td>
-                      <td class="align-middle border-0">
-                        <div class="border d-flex align-items-center justify-content-between px-3"><span class="small text-uppercase text-gray headings-font-family">Quantity</span>
-                          <div class="quantity">
-                            <a href="{% url 'store:minus-cart' cart_product.id %}" class="dec-btn p-0 ml-2"><i class="fas fa-minus"></i></a>
-                            {% comment %} <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button> {% endcomment %}
-                            <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="{{cart_product.quantity}}"/>
-                            {% comment %} <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button> {% endcomment %}
-                            <a href="{% url 'store:plus-cart' cart_product.id %}" class="inc-btn p-0"><i class="fas fa-plus"></i></a>
-                          </div>
-                        </div>
-                      </td>
+                      
                       <td class="align-middle border-0">
                         <p class="mb-0 small">₦{{cart_product.total_price|intcomma}}</p>
                       </td>
@@ -84,59 +74,11 @@
                 </table>
               </div>
               <!-- CART NAV-->
-              <div class="bg-light px-4 py-3">
-                <div class="row align-items-center text-center">
-                  <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm" href="{% url 'store:home' %}"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
-                  <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href="{% url 'store:orders' %}">..<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
-                </div>
-              </div>
+              
             </div>
             <!-- ORDER TOTAL-->
             <div class="col-lg-4">
-              <div class="card border-0 rounded-0 p-lg-4 bg-light">
-                <div class="card-body">
-                  <h5 class="text-uppercase mb-4">Cart total</h5>
-                  <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Subtotal</strong><span class="text-muted small">₦{{amount|intcomma}}</span></li>
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold">Delivery Charge</strong><span class="text-muted small">+ ₦{{shipping_amount}}</span></li>
-                    <li class="border-bottom my-2"></li>
-                    <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>₦{{total_amount|intcomma}}</span></li>
-                    <li>
-
-                      {% comment %} <form action="#">
-                        <div class="form-group mb-0">
-                          <input class="form-control" type="text" placeholder="Enter your coupon">
-                          <button class="btn btn-dark btn-sm btn-block" type="submit"> <i class="fas fa-gift mr-2"></i>Apply coupon</button>
-                        </div>
-                      </form> {% endcomment %}
-
-                    </li>
-                  </ul>
-
-                  
-                  <h5 class="text-uppercase my-5">Select WayBill Address, you'll be contacted via your WhatsApp Number</h5>
-                  
-                  <form action="{% url 'store:checkout' %}" id="myform">
-
-                    {% if addresses %}
-                      {% for address in addresses %}
-                        <div class="mb-3">
-                        <input type="radio" name="address" value="{{address.id}}" required> <strong>Address {{forloop.counter}}</strong> <br>
-                        {{address.whatsapp}}, {{address.state}}
-                        </div>
-                      {% endfor %}
-                    {% endif %}
-
-                    <!-- Set up a container element for the button -->
-                    <div class="text-end" id="paypal-button-container"></div>
-
-                    {% comment %} For Cash on Delivery {% endcomment %}
-                    <button type="submit" class="btn btn-dark btn-lg btn-outline-dark" type="submit"> <i class="fas fa-naira-sign mr-2"></i>Place All Orders</button>
-
-                  </form>
-
-                </div>
-              </div>
+              
             </div>
 
           </div>
@@ -145,8 +87,8 @@
         {% else %}
 
           <div class="text-center py-5">
-            <h3 class="mb-3">Your cart is empty.</h3>
-            <a href="{% url 'store:home' %}"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a>
+            <h3 class="mb-3">Your have bought 0 Tickets.</h3>
+            <a href="{% url 'store:home' %}"><i class="fas fa-long-arrow-alt-left mr-2"> </i>#</a>
           </div>
 
         {% endif %}
