@@ -8,48 +8,48 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <!-- Link--><a style="color:orangered;"class="nav-link active" href="{% url 'store:home' %}">Home</a>
+                  <!-- Link--><a style="color:black;"class="nav-link active" href="{% url 'store:home' %}">Home</a>
                 </li>
-                <li class="nav-item dropdown"><a style="color:orangered;" class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                <li class="nav-item dropdown"><a style="color:black;" class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                   <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown">
                     {% if categories_menu %}
                       {% for cat_menu in categories_menu %}
-                        <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'store:category-products' cat_menu.slug %}">{{cat_menu.title}}</a>
+                        <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:category-products' cat_menu.slug %}">{{cat_menu.title}}</a>
                       {% endfor %}
                     {% endif %}
                     <hr>
-                    <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'store:all-categories' %}">All Categories</a>
+                    <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:all-categories' %}">All Categories</a>
                     
                 </li>
                 <li class="nav-item">
-                  <!-- Link--><a style="color:orangered;" class="nav-link" href="{% url 'store:home' %}">Blog</a>
+                  <!-- Link--><a style="color:black;" class="nav-link" href="{% url 'store:home' %}">Blog</a>
                 </li>
                 <li class="nav-item">
-                  <!-- Link--><a style="color:orangered;" class="nav-link" href="{% url 'store:home' %}">Contact</a>
+                  <!-- Link--><a style="color:black;" class="nav-link" href="{% url 'store:home' %}">Contact</a>
                 </li>
               </ul>
               <ul class="navbar-nav ml-auto"> 
                 {% if request.user.is_authenticated %}           
-                  <li class="nav-item"><a style="color:orangered;" class="nav-link" href="{% url 'store:cart' %}"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{cart_items.count}})</small></a></li>
-                  <li class="nav-item"><a style="color:orangered;" class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
-                  {% comment %} <li class="nav-item"><a style="color:orangered;" class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>My Account</a></li> {% endcomment %}
+                  <li class="nav-item"><a style="color:black;" class="nav-link" href="{% url 'store:cart' %}"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{cart_items.count}})</small></a></li>
+                  <li class="nav-item"><a style="color:black;" class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
+                  {% comment %} <li class="nav-item"><a style="color:black;" class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>My Account</a></li> {% endcomment %}
 
-                  <li class="nav-item dropdown"><a style="color:orangered;" class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt mr-1 text-gray"></i>My Account</a></a>
+                  <li class="nav-item dropdown"><a style="color:black;" class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt mr-1 text-gray"></i>My Account</a></a>
                   
                   <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown">
                     
-                      <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'store:profile' %}">Profile</a>
-                      <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'store:cart' %}">Cart</a>
-                      <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'store:orders' %}">Orders</a>
+                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:profile' %}">Profile</a>
+                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:cart' %}">Cart</a>
+                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:orders' %}">Orders</a>
                      
 
                     <hr>
-                    <a style="color:orangered;" class="dropdown-item border-0 transition-link" href="{% url 'account_logout' %}">Log Out</a>
+                    <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'account_logout' %}">Log Out</a>
                     
                 </li>
                 {% else %}
-                  <li class="nav-item"><a style="color:orangered;" class="nav-link" href="{% provider_login_url 'google' %}">Login</a></li>
-                  <li class="nav-item"><a style="color:orangered;" class="nav-link" href="{% provider_login_url 'google' %}">Create Account</a></li>
+                  <li class="nav-item"><a style="color:black;" class="nav-link" href="{% provider_login_url 'google' %}">Login</a></li>
+                  <li class="nav-item"><a style="color:black;" class="nav-link" href="{% provider_login_url 'google' %}">Create Account</a></li>
                 {% endif %}   
               </ul>
             </div>
