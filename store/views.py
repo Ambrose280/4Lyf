@@ -22,7 +22,7 @@ def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
 def home(request):
-    categories = Category.objects.filter(is_active=True, is_featured=True)[:3]
+    categories = Category.objects.filter(is_active=True, is_featured=True)[:4]
     products = Product.objects.filter(is_active=True, is_featured=True)[:8]
     context = {
         'categories': categories,
