@@ -12,9 +12,8 @@
 
         <!-- CATEGORIES SECTION-->
         <section class="pt-5">
-          <a class="btn btn-dark" href="{% url 'store:all-categories' %}">Dance Lessons</a>
           <header class="text-center">
-            
+            <a class="btn btn-dark" href="{% url 'store:all-categories' %}">Dance Lessons</a>
             <p class="small text-muted small text-uppercase mb-1">Carefully created collections</p>
             <h2 class="h5 text-uppercase mb-4">Browse our categories</h2>
             
@@ -28,7 +27,7 @@
                   {% if category.category_image %}
                     <img class="img-fluid" src="{{ category.category_image.url }}" alt="{{ category.title }}" style="object-fit: contain;">
                   {% endif %}
-                  <strong class="category-item-title" style="background: silver; color:orangered;opacity: 0.2;">{{ category.title }}</strong>
+                  <strong class="category-item-title" style="background: orangered; color:silver;opacity: 0.8;">{{ category.title }}</strong>
                 </a>
               </div>
             
