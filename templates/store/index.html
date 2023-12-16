@@ -25,9 +25,9 @@
               <div class="col-md-4 mb-4 mb-md-0">
                 <a class="category-item" href="{% url 'store:category-products' category.slug %}">
                   {% if category.category_image %}
-                    <img class="img-fluid" src="{{ category.category_image.url }}" alt="{{ category.title }}" style=" width: 350px; height: 372px; object-fit: contain;">
+                    <img class="img-fluid" src="{{ category.category_image.url }}" alt="{{ category.title }}" style="object-fit: contain;">
                   {% endif %}
-                  <strong class="category-item-title" style="background: #000000; color:white;opacity: 0.8;">{{ category.title }}</strong>
+                  <strong class="category-item-title" style="background: orangered; color:silver;opacity: 0.8;">{{ category.title }}</strong>
                 </a>
               </div>
             
@@ -63,9 +63,10 @@
                       </a>
 
                       <div class="product-overlay">
+                        <button type="submit" class="btn btn-sm btn-dark">Register</button>
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0">
+                          <!-- <li class="list-inline-item m-0 p-0">
                             {% comment %} <a class="btn btn-sm btn-dark" href="{% url 'store:add-to-cart' %}">Add to cart</a> {% endcomment %}
 
                             <form action="{% url 'store:add-to-cart' %}">
@@ -73,7 +74,7 @@
                               <button type="submit" class="btn btn-sm btn-dark">Add to Cart</button>
                             </form>
 
-                          </li>
+                          </li> -->
                         </ul>
                       </div>
                     </div>
