@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Address, Category, Product, Cart, Order
+from .models import *
 import admin_thumbnails
 # Register your models here.
 from django.contrib.admin import AdminSite
@@ -57,3 +57,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(ClassTicket)
