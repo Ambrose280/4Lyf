@@ -30,7 +30,7 @@
               </ul>
               <ul class="navbar-nav ml-auto"> 
                 {% if request.user.is_authenticated %}           
-                  <li class="nav-item"><a style="color:black;" class="nav-link" href="{% url 'store:cart' %}"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">({{cart_items.count}})</small></a></li>
+                  <li class="nav-item"><a style="color:black;" class="nav-link" href="#"> <i class="fas fa-dolly-flatbed mr-1 text-gray"></i>Registered<small class="text-gray">({{cart_items.count}})</small></a></li>
                   <li class="nav-item"><a style="color:black;" class="nav-link" href="#"> <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a></li>
                   {% comment %} <li class="nav-item"><a style="color:black;" class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>My Account</a></li> {% endcomment %}
 
@@ -39,8 +39,8 @@
                   <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown">
                     
                       <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:profile' %}">Profile</a>
-                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:cart' %}">Cart</a>
-                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="{% url 'store:orders' %}">Orders</a>
+                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="#">Registered Events</a>
+                      <a style="color:black;" class="dropdown-item border-0 transition-link" href="#">Upcoming Events</a>
                      
 
                     <hr>
