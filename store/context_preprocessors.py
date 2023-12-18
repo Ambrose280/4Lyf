@@ -1,4 +1,4 @@
-from .models import Category, Cart
+from .models import *
 
 
 def store_menu(request):

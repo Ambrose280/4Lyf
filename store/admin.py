@@ -36,12 +36,8 @@ class ProductAdmin(admin.ModelAdmin):
    
    
 
-class CartAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product', 'quantity', 'created_at')
-    list_editable = ('quantity',)
-    list_filter = ('created_at',)
-    list_per_page = 200
-    search_fields = ('user', 'product')
+class TicketAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'created_at')
 
 
 
@@ -49,4 +45,4 @@ class CartAdmin(admin.ModelAdmin):
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ClassTicket)
+admin.site.register(ClassTicket, TicketAdmin)

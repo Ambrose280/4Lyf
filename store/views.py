@@ -30,41 +30,13 @@ def tix(request):
     cart_products = RegisteredEvents.objects.filter(user=user)
 
     # Display Total on Cart Page
-    amount = decimal.Decimal(0)
-    shipping_amount = decimal.Decimal(10)
-    # using list comprehension to calculate total amount based on quantity and shipping
-    cp = [p for p in Cart.objects.all() if p.user==user]
-    if cp:
-        for p in cp:
-            temp_amount = (p.quantity * p.product.price)
-            amount += temp_amount
-
-    # Customer Addresses
-    addresses = Address.objects.filter(user=user)
 
     context = {
         'cart_products': cart_products,
         'amount': amount,
-        'shipping_amount': shipping_amount,
-        'total_amount': amount + shipping_amount,
-        'addresses': addresses,
     }
     return render(request, 'store/cart.html', context)
 
-@login_required
-def addclassticket(request):
-    user = request.user
-    product_id = request.GET.get('prod_id')
-    product = get_object_or_404(Product, id=product_id)
-
-    # Check whether the Product is alread in Cart or Not
-    item_already_in_cart = Cart.objects.filter(product=product_id, user=user)
-    if item_already_in_cart:
-        messages.success(request, "You have already registered")
-    else:
-        Cart(user=user, product=product).save()
-    
-    return redirect('store:cart')
 
 def home(request):
     categories = Category.objects.filter(is_active=True, is_featured=True)[:4]
@@ -100,17 +72,6 @@ def all_categories(request):
     categories = Category.objects.filter(is_active=True)
     return render(request, 'store/categories.html', {'categories':categories})
 
-
-# def category_products(request, slug):
-#     category = get_object_or_404(Category, slug=slug)
-#     products = Product.objects.filter(is_active=True, category=category)
-#     categories = Category.objects.filter(is_active=True)
-#     context = {
-#         'category': category,
-#         'products': products,
-#         'categories': categories,
-#     }
-#     return render(request, 'store/category_products.html', context)
 
 
 def category_products(request, slug):
@@ -187,51 +148,6 @@ def remove_address(request, id):
     a.delete()
     messages.success(request, "Address removed.")
     return redirect('store:profile')
-
-@login_required
-def add_to_cart(request):
-    user = request.user
-    product_id = request.GET.get('prod_id')
-    product = get_object_or_404(Product, id=product_id)
-
-    # Check whether the Product is alread in Cart or Not
-    item_already_in_cart = Cart.objects.filter(product=product_id, user=user)
-    if item_already_in_cart:
-        cp = get_object_or_404(Cart, product=product_id, user=user)
-        cp.quantity += 1
-        cp.save()
-    else:
-        Cart(user=user, product=product).save()
-    
-    return redirect('store:cart')
-
-
-@login_required
-def cart(request):
-    user = request.user
-    cart_products = Cart.objects.filter(user=user)
-
-    # Display Total on Cart Page
-    amount = decimal.Decimal(0)
-    shipping_amount = decimal.Decimal(10)
-    # using list comprehension to calculate total amount based on quantity and shipping
-    cp = [p for p in Cart.objects.all() if p.user==user]
-    if cp:
-        for p in cp:
-            temp_amount = (p.quantity * p.product.price)
-            amount += temp_amount
-
-    # Customer Addresses
-    addresses = Address.objects.filter(user=user)
-
-    context = {
-        'cart_products': cart_products,
-        'amount': amount,
-        'shipping_amount': shipping_amount,
-        'total_amount': amount + shipping_amount,
-        'addresses': addresses,
-    }
-    return render(request, 'store/cart.html', context)
 
 
 @login_required
