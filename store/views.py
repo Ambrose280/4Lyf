@@ -24,6 +24,23 @@ import requests
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
+
+
+@login_required
+def addclassticket(request):
+    user = request.user
+    product_id = request.GET.get('prod_id')
+    product = get_object_or_404(Product, id=product_id)
+
+    # Check whether the Product is alread in Cart or Not
+    item_already_in_cart = Cart.objects.filter(product=product_id, user=user)
+    if item_already_in_cart:
+        messages.success(request, "You have already registered")
+    else:
+        Cart(user=user, product=product).save()
+    
+    return redirect('store:cart')
+
 def home(request):
     categories = Category.objects.filter(is_active=True, is_featured=True)[:4]
     products = Product.objects.filter(is_active=True, is_featured=True)[:8]
@@ -33,16 +50,25 @@ def home(request):
     }
     return render(request, 'store/index.html', context)
 
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
+    
+    # Assuming you have a 'user' variable available (e.g., through request.user)
+    user = request.user
+    
     related_products = Product.objects.exclude(id=product.id).filter(is_active=True, category=product.category)
+    item_already_in_cart = ClassTicket.objects.filter(product=product, user=user).exists()
+    
     context = {
         'product': product,
         'related_products': related_products,
-
+        'item_already_in_cart': item_already_in_cart,
     }
     return render(request, 'store/detail.html', context)
+
 
 
 def all_categories(request):

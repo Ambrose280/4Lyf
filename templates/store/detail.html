@@ -35,14 +35,20 @@
                 </div>
 
                 <div class="col-sm-3 pl-sm-0">
-                  {% comment %} <a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="#">Buy Ticket</a> {% endcomment %}
-                  
-                  <form action="#">
-                    <input type="hidden" name="prod_id" value="{{product.id}}" id="product_id">
-                    <button style="background-color: darkred; color: white;" type="submit" class="btn btn-dark btn-lg btn-block h-100 d-flex align-items-center justify-content-center px-0">Buy Ticket..</button>
+                  <form action="#" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="prod_id" value="{{ product.id }}" id="product_id">
+              
+                      {% if item_already_in_cart %}
+                          <p>Ticket Already Bought</p>
+                      {% else %}
+                          <button style="background-color: darkred; color: white;" type="submit" class="btn btn-dark btn-lg btn-block h-100 d-flex align-items-center justify-content-center px-0">
+                              Buy Ticket
+                          </button>
+                      {% endif %}
                   </form>
-
-                </div>
+              </div>
+              
 
               </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart mr-2"></i></a><br>
               <ul class="list-unstyled small d-inline-block">
