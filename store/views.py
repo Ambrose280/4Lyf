@@ -24,7 +24,32 @@ import requests
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
+@login_required
+def tix(request):
+    user = request.user
+    cart_products = RegisteredEvents.objects.filter(user=user)
 
+    # Display Total on Cart Page
+    amount = decimal.Decimal(0)
+    shipping_amount = decimal.Decimal(10)
+    # using list comprehension to calculate total amount based on quantity and shipping
+    cp = [p for p in Cart.objects.all() if p.user==user]
+    if cp:
+        for p in cp:
+            temp_amount = (p.quantity * p.product.price)
+            amount += temp_amount
+
+    # Customer Addresses
+    addresses = Address.objects.filter(user=user)
+
+    context = {
+        'cart_products': cart_products,
+        'amount': amount,
+        'shipping_amount': shipping_amount,
+        'total_amount': amount + shipping_amount,
+        'addresses': addresses,
+    }
+    return render(request, 'store/cart.html', context)
 
 @login_required
 def addclassticket(request):
