@@ -10,7 +10,7 @@ app_name = 'store'
 urlpatterns = [
     path('', views.home, name="home"),
     # URL for Cart and Checkout
-    path('classes/', views.cart, name="classes"),
+    path('classes/', views.tix, name="classes"),
 
     #URL for Products
     path('lesson/<slug:slug>/', views.detail, name="product-detail"),
