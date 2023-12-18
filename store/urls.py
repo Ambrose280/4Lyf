@@ -11,7 +11,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     # URL for Cart and Checkout
     path('classes/', views.tix, name="classes"),
-    path('register/<int:id>/', views.register, name="register"),
+    path('register/', views.register, name="register"),
 
     #URL for Products
     path('lesson/<slug:slug>/', views.detail, name="product-detail"),
