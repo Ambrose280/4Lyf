@@ -55,6 +55,4 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Address, AddressAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Cart, CartAdmin)
-admin.site.register(Order, OrderAdmin)
 admin.site.register(ClassTicket)
