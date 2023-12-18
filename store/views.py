@@ -25,9 +25,38 @@ def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
 @login_required
+def register(request):
+    user = request.user
+    product_id = request.GET.get('prod_id')
+    product = get_object_or_404(Product, id=product_id)
+
+    # Check whether the Product is alread in Cart or Not
+    item_already_in_cart = ClassTicket.objects.filter(product=product_id, user=user)
+    if item_already_in_cart:
+        return redirect('store:classes')
+    else:
+        Cart(user=user, product=product).save()
+        return redirect('store:classes')
+
+@login_required
+def register(request):
+    user = request.user
+    prod = ClassTicket.objects.filter(pk=pk)
+    cart_products = ClassTicket.objects.create(user=user, product=prod)
+
+    # Display Total on Cart Page
+
+    context = {
+        'cart_products': cart_products,
+        'amount': amount,
+    }
+    return render(request, 'store/cart.html', context)
+
+
+@login_required
 def tix(request):
     user = request.user
-    cart_products = RegisteredEvents.objects.filter(user=user)
+    cart_products = ClassTicket.objects.filter(user=user)
 
     # Display Total on Cart Page
 

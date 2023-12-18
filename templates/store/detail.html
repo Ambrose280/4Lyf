@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="col-sm-3 pl-sm-0">
-                  <form action="#" method="post">
+                  <form action="{% url 'store:register' %}" method="post">
                       {% csrf_token %}
                       <input type="hidden" name="prod_id" value="{{ product.id }}" id="product_id">
               
