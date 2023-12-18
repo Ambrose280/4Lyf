@@ -38,20 +38,6 @@ def register(request):
         Cart(user=user, product=product).save()
         return redirect('store:classes')
 
-@login_required
-def register(request):
-    user = request.user
-    prod = ClassTicket.objects.filter(pk=pk)
-    cart_products = ClassTicket.objects.create(user=user, product=prod)
-
-    # Display Total on Cart Page
-
-    context = {
-        'cart_products': cart_products,
-        'amount': amount,
-    }
-    return render(request, 'store/cart.html', context)
-
 
 @login_required
 def tix(request):
