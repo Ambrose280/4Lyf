@@ -37,7 +37,7 @@ def register(request):
     if item_already_in_cart:
         return render(request, 'store/cart.html')
     else:
-        stripe.api_key = os.getenv('STRIPE_SECRET')
+        stripe.api_key = 'sk_test_51NSpYGE1PS5aYBrepnFeHVro0vL4TkAh37Wl76DHCAxPwmvJCdfKLnvAGrRIRNzeW8YsKR6w31CaDm7XZCSFp4X700BTBU2hWp'
         ClassTicket.objects.create(user=user, product=product).save()
 
         pay = stripe.checkout.Session.create(success_url="https://dancersforlife.vercel.app/classes",line_items=[{"price": "price_1OP8xRE1PS5aYBreXABY5wP8", "quantity": 1}],mode="payment",)
