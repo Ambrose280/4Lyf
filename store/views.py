@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator # for Class Based Views
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import subprocess
-
+import os
 from django.conf import settings
 
 from twilio.rest import Client
@@ -38,6 +38,7 @@ def register(request):
         ClassTicket.objects.create(user=user, product=product).save()
         return render(request, 'store/cart.html')
 
+# !.5KcSE<  sb-lwklp28815184@personal.example.com  https://sandbox.paypal.com
 
 @login_required
 def tix(request):
@@ -71,10 +72,11 @@ def detail(request, slug):
     user = request.user
     
     related_products = Product.objects.exclude(id=product.id).filter(is_active=True, category=product.category)
-    item_already_in_cart = ClassTicket.objects.filter(product=product, user=user).exists()
-    
+    item_already_in_cart = ClassTicket.objects.filter(product=product, user=request.user.id).exists()
+    paypal_client_id = os.getenv("PAYPAL_CLIENT_ID")
     context = {
         'product': product,
+        'paypal_client_id':paypal_client_id,
         'related_products': related_products,
         'item_already_in_cart': item_already_in_cart,
     }

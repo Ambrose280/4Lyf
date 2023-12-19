@@ -35,6 +35,42 @@
                 </div>
 
                 <div class="col-sm-3 pl-sm-0">
+                  <div id="paypal-button-container"></div>
+<!-- Your existing code... -->
+
+<script>
+paypal.Buttons({
+    // Configuration options for creating the order and handling the payment
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: '{{ product.price }}', // Replace with your product price
+                    currency_code: 'USD'
+                }
+            }]
+        });
+    },
+    // Callback when the payment is approved
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            // Handle the successful payment
+
+            // Redirect the user to the /register/ page or handle the response accordingly
+            window.location.href = '/register/';
+        });
+    },
+    // Callback when an error occurs during the payment process
+    onError: function(err) {
+        console.error('Error during PayPal payment:', err);
+        // Handle errors
+    }
+}).render('#paypal-button-container');
+
+</script>
+
+<!-- Other scripts or additional content -->
+
                   <form action="{% url 'store:register' %}" method="post">
                       {% csrf_token %}
                       <input type="hidden" name="prod_id" value="{{ product.id }}" id="product_id">
