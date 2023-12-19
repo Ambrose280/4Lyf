@@ -27,7 +27,7 @@ def custom_404(request, exception):
 @login_required
 def register(request):
     user = request.user
-    product_id = request.GET.get('prod_id')
+    product_id = request.POST['prod_id']
     product = get_object_or_404(Product, id=product_id)
 
     # Check whether the Product is alread in Cart or Not
@@ -35,7 +35,7 @@ def register(request):
     if item_already_in_cart:
         return render(request, 'store/cart.html')
     else:
-        Cart(user=user, product=product).save()
+        ClassTicket.objects.create(user=user, product=product).save()
         return render(request, 'store/cart.html')
 
 
@@ -134,7 +134,7 @@ class RegistrationView(View):
 @login_required
 def profile(request):
     addresses = Address.objects.filter(user=request.user)
-    orders = Order.objects.filter(user=request.user)
+    
     return render(request, 'accnt/profile.html', {'addresses':addresses, 'orders':orders})
 
 
