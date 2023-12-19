@@ -19,10 +19,20 @@ import os
 from twilio.rest import Client
 import json
 import requests
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+
 
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+
+def pay(request):
+    return render(request, 'store/pay.html')
+
 
 @login_required
 def register(request):
@@ -62,7 +72,6 @@ def home(request):
     }
     return render(request, 'store/index.html', context)
 
-from django.contrib.auth.decorators import login_required
 
 
 def detail(request, slug):
@@ -137,7 +146,7 @@ class RegistrationView(View):
 def profile(request):
     addresses = Address.objects.filter(user=request.user)
     
-    return render(request, 'accnt/profile.html', {'addresses':addresses, 'orders':orders})
+    return render(request, 'accnt/profile.html', {'addresses':addresses,})
 
 
 @method_decorator(login_required, name='dispatch')

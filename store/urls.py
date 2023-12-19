@@ -12,6 +12,8 @@ urlpatterns = [
     # URL for Cart and Checkout
     path('classes/', views.tix, name="classes"),
     path('register/', views.register, name="register"),
+    path('pay/', views.pay, name="pay"),
+
 
     #URL for Products
     path('lesson/<slug:slug>/', views.detail, name="product-detail"),
@@ -19,6 +21,8 @@ urlpatterns = [
     path('<slug:slug>/', views.category_products, name="category-products"),
 
     path('shop/', views.shop, name="shop"),
+
+    
 
  
     path('user/profile/', views.profile, name="profile"),
