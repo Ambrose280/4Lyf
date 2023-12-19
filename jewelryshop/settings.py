@@ -1,11 +1,14 @@
-
-
-from pathlib import Path
-
 import os
+
+from dotenv import load_dotenv
+from pathlib import Path
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# settings.py
+PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
+PAYPAL_CLIENT_SECRET = os.getenv("PAYPAL_CLIENT_SECRET")
 
 
 # Quick-start development settings - unsuitable for production
