@@ -12,7 +12,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import subprocess
 import os
 from django.conf import settings
-
+import stripe
 from twilio.rest import Client
 # Download the helper library from https://www.twilio.com/docs/python/install
 import os
@@ -23,6 +23,8 @@ import requests
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+
 
 @login_required
 def register(request):
@@ -35,10 +37,14 @@ def register(request):
     if item_already_in_cart:
         return render(request, 'store/cart.html')
     else:
+        stripe.api_key = os.getenv('STRIPE_SECRET')
         ClassTicket.objects.create(user=user, product=product).save()
-        return render(request, 'store/cart.html')
 
-# !.5KcSE<  sb-lwklp28815184@personal.example.com  https://sandbox.paypal.com
+        pay = stripe.checkout.Session.create(success_url="https://dancersforlife.vercel.app/classes",line_items=[{"price": "price_1OP8xRE1PS5aYBreXABY5wP8", "quantity": 1}],mode="payment",)
+        oo = pay['url']
+        return redirect(oo)
+
+# ndbox.paypal.com
 
 @login_required
 def tix(request):
