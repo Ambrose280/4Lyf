@@ -73,7 +73,7 @@ def register(request):
             # Redirect user to PayPal for approval
             return HttpResponseRedirect(payment.links[1].href)
         else:
-            return render(request, 'store/payment_error.html', {'error': payment.error})
+            return render(request, '404.html', status=404)
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
