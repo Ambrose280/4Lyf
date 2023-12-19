@@ -65,7 +65,9 @@ class RegisteredEvents(models.Model):
     def total_price(self):
         return self.quantity * self.product.price
 
-
+class Event(models.Model):
+    name = models.CharField(max_length=150, verbose_name="Event Title")
+    images = models.ImageField(upload_to='product', blank=True, null=True, verbose_name="Event Image")
 class ClassTicket(models.Model):
     user = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name="Product", on_delete=models.CASCADE)

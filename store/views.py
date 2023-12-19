@@ -62,8 +62,10 @@ def tix(request):
 def home(request):
     categories = Category.objects.filter(is_active=True, is_featured=True)[:4]
     products = Product.objects.filter(is_active=True, is_featured=True)[:8]
+    events = Event.objects.all().values()
     context = {
         'categories': categories,
+        'events':events,
         'products': products,
     }
     return render(request, 'store/index.html', context)
