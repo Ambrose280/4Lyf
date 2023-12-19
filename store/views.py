@@ -72,7 +72,7 @@ def home(request):
 
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     
