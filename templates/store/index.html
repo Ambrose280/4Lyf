@@ -17,24 +17,7 @@
             <h2 class="h5 text-uppercase mb-4">Browse our categories</h2>
             
           </header>
-          <div class="row">
-            {% if events %}
-              {% for event in events %}
-  
-                <div class="col-md-4 mb-4 mb-md-0">
-                  <a class="category-item" href="#">
-                    {% if event.images %}
-                          <img class="img-fluid w-100" src="{{ event.images.url }}" alt="{{event.name}}" style="object-fit: contain;">
-                        
-                        {% endif %}
-                  
-                    <strong class="category-item-title" style="background: silver; color:orangered;opacity: 0.8;">{{ category.title }}</strong>
-                  </a>
-                </div>
-              
-              {% endfor %}
-            {% endif %}
-            </div>
+          
           <div class="row">
           {% if categories %}
             {% for category in categories %}
@@ -96,6 +79,22 @@
 
         <!-- NEWSLETTER-->
         <section class="py-5">
+          {% if events %}
+              {% for event in events %}
+  
+                <div class="col-md-4 mb-4 mb-md-0">
+                  <a class="category-item" href="#">
+                    {% if event.images %}
+                          <img class="img-fluid w-100" src="{{ event.images.url }}" alt="{{event.name}}" style="object-fit: contain;">
+                        
+                        {% endif %}
+                  
+                    <strong class="category-item-title" style="background: silver; color:orangered;opacity: 0.8;">{{ category.title }}</strong>
+                  </a>
+                </div>
+              
+              {% endfor %}
+            {% endif %}
           <div class="container p-0">
             <div class="row">
               <div class="col-lg-6 mb-3 mb-lg-0">
