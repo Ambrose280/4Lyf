@@ -24,6 +24,9 @@
 
               <div class="col-md-4 mb-4 mb-md-0">
                 <a class="category-item" href="{% url 'store:category-products' category.slug %}">
+                  {% if category.category_image %}
+                    <img class="img-fluid" src="{{ category.category_image.url }}" alt="{{ category.title }}" style=" width: 350px; height: 372px; object-fit: contain;">
+                  {% endif %}
                 
                   <strong class="category-item-title" style="background: silver; color:orangered;opacity: 0.8;">{{ category.title }}</strong>
                 </a>
