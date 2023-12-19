@@ -145,7 +145,7 @@ class RegistrationView(View):
 def profile(request):
     addresses = Address.objects.filter(user=request.user)
     
-    return render(request, 'accnt/profile.html', {'addresses':addresses, 'orders':orders})
+    return render(request, 'accnt/profile.html', {'addresses':addresses,})
 
 
 @method_decorator(login_required, name='dispatch')
