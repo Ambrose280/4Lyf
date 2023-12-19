@@ -19,15 +19,10 @@ import os
 from twilio.rest import Client
 import json
 import requests
-from django.http import HttpResponseRedirect
-from paypalrestsdk import Payment, configure
-from django.urls import reverse
 
-configure({
-    "mode": "sandbox" if settings.DEBUG else "live",
-    "client_id": settings.PAYPAL_CLIENT_ID,
-    "client_secret": settings.PAYPAL_CLIENT_SECRET,
-})
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
 
 @login_required
 def register(request):
@@ -35,62 +30,13 @@ def register(request):
     product_id = request.POST['prod_id']
     product = get_object_or_404(Product, id=product_id)
 
-    # Check whether the Product is already in Cart or Not
-    item_already_in_cart = ClassTicket.objects.filter(product=product_id, user=user).exists()
-
+    # Check whether the Product is alread in Cart or Not
+    item_already_in_cart = ClassTicket.objects.filter(product=product_id, user=user)
     if item_already_in_cart:
         return render(request, 'store/cart.html')
     else:
-        # Create a PayPal payment
-        payment = Payment({
-            "intent": "sale",
-            "payer": {
-                "payment_method": "paypal",
-            },
-            "redirect_urls": {
-                "return_url": request.build_absolute_uri(reverse('payment_done')),
-                "cancel_url": request.build_absolute_uri(reverse('payment_canceled')),
-            },
-            "transactions": [{
-                "item_list": {
-                    "items": [{
-                        "name": product.name,
-                        "sku": str(product.id),
-                        "price": str(product.price),
-                        "currency": "USD",
-                        "quantity": 1,
-                    }],
-                },
-                "amount": {
-                    "total": str(product.price),
-                    "currency": "USD",
-                },
-                "description": product.description,
-            }],
-        })
-
-        if payment.create():
-            # Redirect user to PayPal for approval
-            return HttpResponseRedirect(payment.links[1].href)
-        else:
-            return render(request, '404.html', status=404)
-
-def custom_404(request, exception):
-    return render(request, '404.html', status=404)
-
-# @login_required
-# def register(request):
-#     user = request.user
-#     product_id = request.POST['prod_id']
-#     product = get_object_or_404(Product, id=product_id)
-
-#     # Check whether the Product is alread in Cart or Not
-#     item_already_in_cart = ClassTicket.objects.filter(product=product_id, user=user)
-#     if item_already_in_cart:
-#         return render(request, 'store/cart.html')
-#     else:
-#         ClassTicket.objects.create(user=user, product=product).save()
-#         return render(request, 'store/cart.html')
+        ClassTicket.objects.create(user=user, product=product).save()
+        return render(request, 'store/cart.html')
 
 
 @login_required

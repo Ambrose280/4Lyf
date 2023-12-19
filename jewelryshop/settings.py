@@ -1,20 +1,18 @@
 
-from dotenv import load_dotenv
+
 from pathlib import Path
+
 import os
-load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# settings.py
-PAYPAL_CLIENT_ID = os.getenv("PAYPALID")
-PAYPAL_CLIENT_SECRET = os.getenv("PAYPALSECRET")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRETKEY")
+SECRET_KEY = 'django-insecure-3%y3laftm62q0zaj+s7#p-xqq9(&#q+)s8)p-&#&bz*0$!xu$0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,10 +87,10 @@ WSGI_APPLICATION = 'jewelryshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("NAME"),
-        'USER': os.getenv("USER"),
-        'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': os.getenv("HOST"),  # You can specify your database server's hostname or IP address here
+        'NAME': 'ifiok-ambrose_dance',
+        'USER': 'ifiok-ambrose',
+        'PASSWORD': 'Ul=**pro1',
+        'HOST': 'postgresql-ifiok-ambrose.alwaysdata.net',  # You can specify your database server's hostname or IP address here
         'PORT': '',           # Leave this empty for the default PostgreSQL port (5432)
     }
 }
@@ -100,9 +98,9 @@ DATABASES = {
 handler404 = 'app_name.views.custom_404'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv("CLOUD_NAME"),
-    'API_KEY': os.getenv("API_KEY"),
-    'API_SECRET': os.getenv("API_SECRET")
+    'CLOUD_NAME': 'dkgks4gxq',
+    'API_KEY': '939815724182597',
+    'API_SECRET': 'JxksJJXLzJZ1bk8mDBXqA2iFOtQ'
 }
 
 # Password validation
