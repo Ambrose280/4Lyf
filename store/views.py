@@ -33,10 +33,10 @@ def register(request):
     # Check whether the Product is alread in Cart or Not
     item_already_in_cart = ClassTicket.objects.filter(product=product_id, user=user)
     if item_already_in_cart:
-        return redirect('store:classes')
+        return render(request, 'store/cart.html')
     else:
         Cart(user=user, product=product).save()
-        return redirect('store:classes')
+        return render(request, 'store/cart.html')
 
 
 @login_required
@@ -48,7 +48,6 @@ def tix(request):
 
     context = {
         'cart_products': cart_products,
-        'amount': amount,
     }
     return render(request, 'store/cart.html', context)
 
