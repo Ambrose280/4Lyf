@@ -20,14 +20,7 @@ from twilio.rest import Client
 import json
 import requests
 
-from paypalrestsdk import Payment, configure
 
-# Configure PayPal SDK with API credentials
-configure({
-    "mode": "sandbox" if settings.DEBUG else "live",
-    "client_id": settings.PAYPAL_CLIENT_ID,
-    "client_secret": settings.PAYPAL_CLIENT_SECRET,
-}) 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
@@ -70,7 +63,7 @@ def home(request):
 
 from django.contrib.auth.decorators import login_required
 
-@
+
 def detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     
